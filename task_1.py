@@ -14,6 +14,8 @@ def process_request():
     if not queue.empty():
         request = queue.get()
         print(request)
+    else:
+        print("Queue is empty")
 
 for i in range(10):
     generate_request()
