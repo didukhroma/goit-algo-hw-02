@@ -17,9 +17,13 @@ def process_request():
     else:
         print("Queue is empty")
 
-for i in range(10):
-    generate_request()
-    if random.randint(0, 1) == 1:
-        print("Processing request")
+while True:
+    user_input = input("Generate request? (y/n): ")
+    if user_input == "y":
+        generate_request()
         process_request()
+    elif user_input == "n":
+        break
+
+
 
