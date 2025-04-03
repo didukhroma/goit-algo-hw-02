@@ -1,7 +1,6 @@
 from queue import Queue
 from datetime import datetime
 import uuid
-import random
 
 queue = Queue()
 
