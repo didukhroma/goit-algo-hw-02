@@ -1,23 +1,19 @@
-from queue import Queue
-from datetime import datetime
-import uuid
-import random
 
-queue = Queue()
+def is_symmetric(string: str) -> bool:
+    brackets = {'}': '{', ']': '[', ')': '('}
+    stack = []
+    for char in string:
+        if char in brackets.values():
+            stack.append(char)
+        elif char in brackets.keys():
+            if stack[-1] == brackets[char]:
+                stack.pop()
+            else:
+                return False
+    return len(stack) == 0
 
-def generate_request():
-    new_request = {"request_id": f"{str(uuid.uuid4())}-{datetime.timestamp(datetime.now())}"}
-    queue.put(new_request)
-    print(new_request)
 
-def process_request():
-    if not queue.empty():
-        request = queue.get()
-        print(request)
-
-for i in range(10):
-    generate_request()
-    if random.randint(0, 1) == 1:
-        print("Processing request")
-        process_request()
+print(is_symmetric("( ){[ 1 ]( 1 + 3 )( ){ }}"))
+print(is_symmetric("( 23 ( 2 - 3);"))
+print(is_symmetric("( 11 }"))
 
